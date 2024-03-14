@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 import { getUserFromXToken, getUserFromAuthorization } from '../utils/auth';
 
 /**
- * Applies Basic authentication to a route.
+ * authentication to a routes.
  * @param {Request} req The Express request object.
  * @param {Response} res The Express response object.
  * @param {NextFunction} next The Express next function.

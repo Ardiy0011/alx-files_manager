@@ -12,7 +12,7 @@ const fileQueue = new Queue('thumbnail generation');
 const userQueue = new Queue('email sending');
 
 /**
- * Generates the thumbnail of an image with a given width size.
+ * thumbnail generator function.
  * @param {String} filePath The location of the original file.
  * @param {number} size The width of the thumbnail.
  * @returns {Promise<void>}
@@ -27,12 +27,14 @@ fileQueue.process(async (job, done) => {
   const fileId = job.data.fileId || null;
   const userId = job.data.userId || null;
 
-  if (!fileId) {
-    throw new Error('Missing fileId');
-  }
   if (!userId) {
     throw new Error('Missing userId');
   }
+
+  if (!fileId) {
+    throw new Error('Missing fileId');
+  }
+
   console.log('Processing', job.data.name || '');
   const file = await (await dbClient.filesCollection())
     .findOne({
